@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Compile Gamemode",
+			"type": "shell",
+			"command": "pawno\\pawncc.exe",
+			"args": [
+				"-d3",
+				"-iinclude",
+				"-iincludes",
+				"-ipawno/include",
+				"-igamemodes",
+				"gamemodes/vrp.pwn"
+			],
+			"group": "build"
+		}
+	]
+}
