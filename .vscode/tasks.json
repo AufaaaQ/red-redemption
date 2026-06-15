@@ -11,7 +11,7 @@
 				"-iincludes",
 				"-ipawno/include",
 				"-igamemodes",
-				"gamemodes/vrp.pwn"
+				"gamemodes/rrp.pwn"
 			],
 			"group": "build"
 		}

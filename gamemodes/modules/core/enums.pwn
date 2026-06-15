@@ -629,7 +629,8 @@ enum playerData {
     pForager,
     Timer:pForagerTimer,
     pDelayForager,
-    pForaging
+    pForaging,
+    pCompasMode
 };
 
 enum factionData {

@@ -3015,7 +3015,7 @@ SQL_SaveCharacter(playerid) {
         PlayerData[playerid][pID]);
     mysql_tquery(g_iHandle, query);
 
-    format(query, sizeof(query), "UPDATE `characters` SET `MigrainUsed`='%d', `FeverUsed`='%d', `Garage`='%d', `GunAuthority`='%d', `DMVTime` = '%d', `SweeperDelay` = '%d', `BusDelay` = '%d', `PosmanDelay` = '%d', `FoodDeliveryDelay` = '%d', `DelayFishing` = '%d', `DelaySorter` = '%d', `DelayUnloader` = '%d', `DelayMiner` = '%d', `DelayFarmer` = '%d', `DelayMissions` = '%d', `SmugglerDelay` = '%d', `GYMMember`='%d|%d', `FitnessRating`='%.2f|%.2f|%.2f|%.2f|%.2f|%.2f', `MaxHealth`='%.1f', `IDCard`='%d', `HUD`='%d', `pLogo`='%d' WHERE ID='%d'",
+    format(query, sizeof(query), "UPDATE `characters` SET `MigrainUsed`='%d', `FeverUsed`='%d', `Garage`='%d', `GunAuthority`='%d', `DMVTime` = '%d', `SweeperDelay` = '%d', `BusDelay` = '%d', `PosmanDelay` = '%d', `FoodDeliveryDelay` = '%d', `DelayFishing` = '%d', `DelaySorter` = '%d', `DelayUnloader` = '%d', `DelayMiner` = '%d', `DelayFarmer` = '%d', `DelayMissions` = '%d', `SmugglerDelay` = '%d', `GYMMember`='%d|%d', `FitnessRating`='%.2f|%.2f|%.2f|%.2f|%.2f|%.2f', `MaxHealth`='%.1f', `IDCard`='%d', `HUD`='%d', `pLogo`='%d', `CompasMode`='%d' WHERE ID='%d'",
         PlayerData[playerid][pMigrainUsed],
         PlayerData[playerid][pFeverUsed],
         PlayerData[playerid][pGarage],
@@ -3044,6 +3044,7 @@ SQL_SaveCharacter(playerid) {
         PlayerData[playerid][pIDCard],
         PlayerData[playerid][pHUD],
         PlayerData[playerid][pLogo],
+        PlayerData[playerid][pCompasMode],
         PlayerData[playerid][pID]
     );
     mysql_tquery(g_iHandle, query);
@@ -6231,9 +6232,11 @@ ShowHungerTextdraw(playerid)
         }
 
         //Map update
-        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][0]);
-        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][1]);
-        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][2]);
+        if(!PlayerData[playerid][pCompasMode]) {
+            PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][0]);
+            PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][1]);
+            PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][2]);
+        }
 
         //Cents update
         PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_cents][0]),
@@ -17736,6 +17739,7 @@ Function:OnQueryFinished(extraid, threadid, race_check)
                 cache_get_value_int(0, "IDCard", PlayerData[extraid][pIDCard]);
                 cache_get_value_int(0, "HUD", PlayerData[extraid][pHUD]);
                 cache_get_value_int(0, "pLogo", PlayerData[extraid][pLogo]);
+                cache_get_value_int(0, "CompasMode", PlayerData[extraid][pCompasMode]);
                 cache_get_value_int(0, "SkillMecha", PlayerData[extraid][pSkillMecha]);
                 // load weapon skill
                 cache_get_value_name_int(0, "ws_silenced_lvl", PlayerData[extraid][WeaponSkillLevel][0]);
@@ -18940,9 +18944,11 @@ Function:SpawnTimer(playerid)
             }
 
             //Map update
-            PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][0]);
-            PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][1]);            
-            PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][2]);
+            if(!PlayerData[playerid][pCompasMode]) {
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][0]);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][1]);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][2]);
+            }
 
             //Ammo Update
             PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_ammo]);
@@ -34615,7 +34621,14 @@ CMD:hudmode(playerid)
     if (!IsPlayerConnected(playerid))
         return 0;
 
-    Dialog_Show(playerid, ChangeHudMode, DIALOG_STYLE_LIST, "Hudmode", "OldSchool\nSimple\nSemi Modern\nLogo Server 0.3DL\nLogo Server Show", "Change", "Close");
+    new logoStatus[16];
+    format(logoStatus, sizeof(logoStatus), PlayerData[playerid][pLogo] ? "{00FF00}0.3.7" : "{FF0000}0.3DL");
+
+    new compassStatus[16];
+    format(compassStatus, sizeof(compassStatus), PlayerData[playerid][pCompasMode] ? "{FF0000}Hide" : "{00FF00}Show");
+    new hudStr[256];
+    format(hudStr, sizeof(hudStr), "OldSchool\nSimple\nSemi Modern\nWatermark Server: %s\nCompas: %s", logoStatus, compassStatus);
+    Dialog_Show(playerid, ChangeHudMode, DIALOG_STYLE_LIST, "Hudmode", hudStr, "Change", "Close");
     return 1;
 }
 
@@ -34676,21 +34689,45 @@ Dialog:ChangeHudMode(playerid, response, listitem, inputtext[]) {
                 }
             }
 
-            case 3: { // Logo Server 0.3DL
-                PlayerData[playerid][pLogo] = 0;
-                TextDrawHideForPlayer(playerid, watermark[0]);
-                TextDrawHideForPlayer(playerid, watermark[1]);
-                if(!PlayerData[playerid][pTogHud]) {
-                    TextDrawShowForPlayer(playerid, LogoCostum);
+            case 3: { // Watermark Toggle
+                if(PlayerData[playerid][pLogo] == 0) {
+                    // Set to 0.3.7
+                    PlayerData[playerid][pLogo] = 1;
+                    TextDrawHideForPlayer(playerid, LogoCostum);
+                    if(!PlayerData[playerid][pTogHud]) {
+                        TextDrawShowForPlayer(playerid, watermark[0]);
+                        TextDrawShowForPlayer(playerid, watermark[1]);
+                    }
+                    SendServerMessage(playerid, "Watermark Server telah diubah ke "GREEN"0.3.7"WHITE".");
+                } else {
+                    // Set to 0.3DL
+                    PlayerData[playerid][pLogo] = 0;
+                    TextDrawHideForPlayer(playerid, watermark[0]);
+                    TextDrawHideForPlayer(playerid, watermark[1]);
+                    if(!PlayerData[playerid][pTogHud]) {
+                        TextDrawShowForPlayer(playerid, LogoCostum);
+                    }
+                    SendServerMessage(playerid, "Watermark Server telah diubah ke "RED"0.3DL"WHITE".");
                 }
             }
 
-            case 4: { // Logo Server Show (Textdraw)
-                PlayerData[playerid][pLogo] = 1;
-                TextDrawHideForPlayer(playerid, LogoCostum);
-                if(!PlayerData[playerid][pTogHud]) {
-                    TextDrawShowForPlayer(playerid, watermark[0]);
-                    TextDrawShowForPlayer(playerid, watermark[1]);
+            case 4: { // Compass Toggle
+                if(PlayerData[playerid][pCompasMode] == 0) {
+                    // Sekarang hide compass
+                    PlayerData[playerid][pCompasMode] = 1;
+                    PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_map][0]);
+                    PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_map][1]);
+                    PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_map][2]);
+                    SendServerMessage(playerid, "Compass telah "RED"disembunyikan"WHITE".");
+                } else {
+                    // Sekarang show compass
+                    PlayerData[playerid][pCompasMode] = 0;
+                    if(!PlayerData[playerid][pTogHud]) {
+                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][0]);
+                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][1]);
+                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_map][2]);
+                    }
+                    SendServerMessage(playerid, "Compass telah "GREEN"ditampilkan"WHITE".");
                 }
             }
         }
