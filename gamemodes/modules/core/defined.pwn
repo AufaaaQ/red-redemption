@@ -1,6 +1,6 @@
-#define SERVER_NAME                     "East Side Roleplay | OldSchool Vibes"
+#define SERVER_NAME                     "Red Redemption Roleplay | OldSchool Vibes"
 #define SERVER_URL                      "https://bit.ly/eastside-rp"
-#define SERVER_DISCORD					"https:discord.gg/East Side"
+#define SERVER_DISCORD					"https:discord.gg/Red Redemption"
 #define SERVER_REVISION                 "ES-RP Latest v0.0.5"
 
 //==============================   SERVER MACROS 	=============================

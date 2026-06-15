@@ -108,7 +108,7 @@ Function:TollGate_Load() {
 
     TollGate_Refresh(i);
   }
-  printf("*** [East Side Database: Loaded] toll gate data (%d count)", rows);
+  printf("*** [Red Redemption Database: Loaded] toll gate data (%d count)", rows);
   return 1;
 }
 

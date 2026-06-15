@@ -25,7 +25,7 @@ Function:Flat_Load() {
       Flat_Refresh(i);
     }
   }
-  printf("*** [East Side Database: Loaded] flat data loaded (%d count)", cache_num_rows());
+  printf("*** [Red Redemption Database: Loaded] flat data loaded (%d count)", cache_num_rows());
   return 1;
 }
 
@@ -72,7 +72,7 @@ Function:FlatRoom_Load() {
       mysql_tquery(g_iHandle, sprintf("SELECT * FROM `flat_structure` WHERE `Flatid` = '%d' AND `Static`='0';", FlatRoom[flatroom][flatRoomID]), "OnLoadFlatStructure", "d", flatroom);
     }
   }
-  printf("*** [East Side Database: Loaded] flat room data loaded (%d count)", cache_num_rows());
+  printf("*** [Red Redemption Database: Loaded] flat room data loaded (%d count)", cache_num_rows());
   return 1;
 }
 

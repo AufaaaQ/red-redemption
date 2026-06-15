@@ -57,7 +57,7 @@ Function:FarmZone_Load() {
 
     pvFarmZone[farmid] = CreateDynamicCircle(x, y, 30.0, 0, 0);
   }
-  printf("*** [East Side Database: Loaded] farm zones loaded (%d count)", rows);
+  printf("*** [Red Redemption Database: Loaded] farm zones loaded (%d count)", rows);
   return 1;
 }
 
@@ -92,7 +92,7 @@ Function:Farm_Load() {
     Iter_Add(Farms, i);
     Farm_Refresh(i);
   }
-  printf("*** [East Side Database: Loaded] private farm data loaded (%d count)", rows);
+  printf("*** [Red Redemption Database: Loaded] private farm data loaded (%d count)", rows);
   return 1;
 }
 

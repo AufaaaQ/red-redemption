@@ -160,7 +160,7 @@ Function:Apart_Load() {
         Iter_Add(Aparts, id);
         Apart_Refresh(id);
     }
-    printf("*** [East Side Database: Loaded] apartment data loaded (%d count)", rows);
+    printf("*** [Red Redemption Database: Loaded] apartment data loaded (%d count)", rows);
     return 1;
 }
 
@@ -234,7 +234,7 @@ Function:ApartRoom_Load() {
         mysql_tquery(g_iHandle, str, "OnLoadRoomStorage", "d", i);
     }
 
-    printf("*** [East Side Database: Loaded] apart room data loaded (%d count)", rows);
+    printf("*** [Red Redemption Database: Loaded] apart room data loaded (%d count)", rows);
     return 1;
 }
 

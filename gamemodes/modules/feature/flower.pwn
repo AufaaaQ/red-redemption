@@ -224,7 +224,7 @@ Function:Flower_Load()
         Flower_Refresh(i);
     }
 
-    printf("*** [East Side Roleplay Database: Loaded] flower data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] flower data (%d count).", rows);
     return 1;
 }
 

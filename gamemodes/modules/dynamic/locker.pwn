@@ -45,7 +45,7 @@ Function:Locker_Load() {
 
         Locker_Refresh(i);
     }
-    printf("*** [East Side Database: Loaded] locker data loaded (%d count)", rows);
+    printf("*** [Red Redemption Database: Loaded] locker data loaded (%d count)", rows);
     return 1;
 }
 

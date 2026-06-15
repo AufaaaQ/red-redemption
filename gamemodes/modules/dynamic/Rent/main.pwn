@@ -404,7 +404,7 @@ Function:RentPoint_Load() {
         cache_get_value_int(rentid, "RentPrice_4", RentPoint[rentid][rentPrice][4]);
         refresh->Rent(rentid);
     }
-    printf("*** [East Side Database: Loaded] rent point data loaded (%d count)", rows);
+    printf("*** [Red Redemption Database: Loaded] rent point data loaded (%d count)", rows);
     return 1;
 }
 

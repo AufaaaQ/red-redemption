@@ -241,7 +241,7 @@ Function:Tags_Load() {
 		Iter_Add(Tags, id);
 		Tags_Refresh(id);
 	}
-	printf("*** [East Side Roleplay Database: Loaded] tags data (%d count)", cache_num_rows());
+	printf("*** [Red Redemption Roleplay Database: Loaded] tags data (%d count)", cache_num_rows());
 	return 1;	
 }
 

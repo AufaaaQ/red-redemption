@@ -134,7 +134,7 @@ Function:Bush_Load() {
 
         Bush_Refresh(i);
     }
-    printf("*** [East Side Database: Loaded] bush forager data loaded (%d count)", rows);
+    printf("*** [Red Redemption Database: Loaded] bush forager data loaded (%d count)", rows);
     return 1;
 }
 

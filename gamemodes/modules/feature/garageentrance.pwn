@@ -404,7 +404,7 @@ Function:GarageEntrance_Load()
         GarageEntrance_Refresh(i);
     }
 
-    printf("*** [East Side Roleplay Database: Loaded] garage entrance data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] garage entrance data (%d count).", rows);
     return 1;
 }
 

@@ -1,7 +1,7 @@
-#define DB_HOST "pma.kelontongzizuel.biz.id"
-#define DB_USER "u20_SMFlrTDIzD"
-#define DB_PASSWORD "!KSOTg5FkAyE5r85Y^9xLQI6"
-#define DB_DATABASE "s20_eastside"
+#define DB_HOST "localhost"
+#define DB_USER "root"
+#define DB_PASSWORD ""
+#define DB_DATABASE "redredemption"
 
 MySqlStartConnection()
 {

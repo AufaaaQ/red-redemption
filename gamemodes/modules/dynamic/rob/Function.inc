@@ -14,7 +14,7 @@ Function:RobPoint_Load() {
 
     Iter_Add(Rob, i);
   }
-  printf("*** [East Side Database: Loaded] rob points data (%d count)", rows);
+  printf("*** [Red Redemption Database: Loaded] rob points data (%d count)", rows);
   return 1;
 }
 

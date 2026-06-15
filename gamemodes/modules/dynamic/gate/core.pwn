@@ -125,7 +125,7 @@ public Gate_Load()
 			
 			Gate_Sync(i);
     }
-    printf("*** [East Side Database: Loaded] gate data (%d count).", cache_num_rows());
+    printf("*** [Red Redemption Database: Loaded] gate data (%d count).", cache_num_rows());
 	return 1;
 }
 

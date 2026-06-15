@@ -52,7 +52,7 @@ Function:Actor_Load()
         Iter_Add(Actors, id);
         Actor_Refresh(id);
     }
-    printf("*** [East Side Database: Loaded] actor data (%d count).", rows);
+    printf("*** [Red Redemption Database: Loaded] actor data (%d count).", rows);
     return 1;
 }
 

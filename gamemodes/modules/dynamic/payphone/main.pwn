@@ -122,7 +122,7 @@ Function:Payphone_Load() {
             Iter_Add(Payphones, i);
             Payphone_Refresh(i);
         }
-        printf("*** [East Side Roleplay Database: Loaded] payphones data loaded (%d count)", rows);
+        printf("*** [Red Redemption Roleplay Database: Loaded] payphones data loaded (%d count)", rows);
     }
     return 1;
 }

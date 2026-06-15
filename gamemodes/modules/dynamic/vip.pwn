@@ -43,7 +43,7 @@ Function:Vip_Load() {
 
     Iter_Add(Vips, i);
   }
-  printf("*** [East Side Database: Loaded] vip data (%d count).", rows);
+  printf("*** [Red Redemption Database: Loaded] vip data (%d count).", rows);
   return 1;
 }
 

@@ -59,7 +59,7 @@ public Lumber_Load()
 
         Lumber_Sync(id);
     }
-    printf("*** [East Side Database: Loaded] lumber data (%d count).", cache_num_rows());
+    printf("*** [Red Redemption Database: Loaded] lumber data (%d count).", cache_num_rows());
     return 1;
 }
 

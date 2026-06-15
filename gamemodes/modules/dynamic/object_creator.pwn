@@ -152,7 +152,7 @@ Function:Object_Load() {
       Object_Refresh(i);
     }
   }
-  printf("*** [East Side Database: Loaded] object data loaded (%d count)", rows);
+  printf("*** [Red Redemption Database: Loaded] object data loaded (%d count)", rows);
   return 1;
 }
 

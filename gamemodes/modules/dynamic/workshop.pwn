@@ -74,7 +74,7 @@ Function:Workshop_Load() {
 		
 		mysql_tquery(g_iHandle, sprintf("SELECT * FROM `player_vehicles` WHERE `Owner`='0' AND `Workshop`='%d' ORDER BY `ID` DESC", WorkshopData[id][wID]), "Vehicle_Load", "");
 	}
-	printf("*** [East Side Database: Loaded] workshop data loaded (%d count).", cache_num_rows());
+	printf("*** [Red Redemption Database: Loaded] workshop data loaded (%d count).", cache_num_rows());
 	return 1;
 }
 

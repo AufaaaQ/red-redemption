@@ -122,7 +122,7 @@ main(){}
 task onlineplayer[1000]()
  {
     new ownstatus[256];
-    format(ownstatus,sizeof(ownstatus),"East Side Roleplay | %d Players",playergame);
+    format(ownstatus,sizeof(ownstatus),"Red Redemption Roleplay | %d Players",playergame);
     DCC_SetBotActivity(ownstatus);
 }
 
@@ -839,7 +839,7 @@ timer JobDutyTime[300000](playerid) {
 
 timer UnlockServer[1000]() {
     if (++LoadGamemodeCount >= 100) {
-        SendRconCommand("hostname East Side Roleplay");
+        SendRconCommand("hostname Red Redemption Roleplay");
         stop GamemodeInit;
         LoadGamemodeCount = 0;
 
@@ -857,8 +857,8 @@ timer UnlockServer[1000]() {
         // }
     } else {
         /*static hostname[64];
-        format(hostname,sizeof(hostname),"hostname East Side Roleplay", LoadGamemodeCount);*/
-        SendRconCommand("hostname East Side Roleplay");
+        format(hostname,sizeof(hostname),"hostname Red Redemption Roleplay", LoadGamemodeCount);*/
+        SendRconCommand("hostname Red Redemption Roleplay");
     }
     return 1;
 }
@@ -6877,7 +6877,7 @@ Arrest_Refresh(arrestid)
 
 //         Detector_Refresh(i);
 //     }
-//     printf("*** [East Side Roleplay Database: Loaded] detector data (%d count).", rows);
+//     printf("*** [Red Redemption Roleplay Database: Loaded] detector data (%d count).", rows);
 //     return 1;
 // }
 
@@ -6899,7 +6899,7 @@ Function:Speed_Load()
 
         Speed_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] speedcam data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] speedcam data (%d count).", rows);
     return 1;
 }
 
@@ -6933,7 +6933,7 @@ Function:Speed_Load()
 //         }
 //         Rack_Refresh(i);
 //     }
-//     printf("*** [East Side Roleplay Database: Loaded] rack data (%d count).", rows);
+//     printf("*** [Red Redemption Roleplay Database: Loaded] rack data (%d count).", rows);
 //     return 1;
 // }
 
@@ -6957,7 +6957,7 @@ Function:Garbage_Load()
 
         Garbage_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] garbage data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] garbage data (%d count).", rows);
     return 1;
 }
 
@@ -6978,7 +6978,7 @@ Function:ATM_Load()
         cache_get_value_int(i, "atmWorld", ATMData[i][atmWorld]);
         ATM_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] atm data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] atm data (%d count).", rows);
     return 1;
 }
 
@@ -7001,7 +7001,7 @@ Function:Impound_Load()
 
         Impound_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] impound data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] impound data (%d count).", rows);
     return 1;
 }
 
@@ -7036,7 +7036,7 @@ Function:Impound_Load()
 
         mysql_tquery(g_iHandle, str, "OnLoadBackpack", "d", i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] backpack data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] backpack data (%d count).", rows);
     return 1;
 }*/
 
@@ -7058,7 +7058,7 @@ Function:Arrest_Load()
 
             Arrest_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] arrest data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] arrest data (%d count).", rows);
     return 1;
 }
 
@@ -7175,7 +7175,7 @@ Function:Faction_Load()
         //Loaded faction vehicle
         mysql_tquery(g_iHandle, sprintf("SELECT * FROM `player_vehicles` WHERE `Owner`='0' AND `Faction`='%d' ORDER BY `ID` DESC", FactionData[i][factionID]), "Vehicle_Load", "");
     }
-    printf("*** [East Side Roleplay Database: Loaded] faction data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] faction data (%d count).", rows);
     return 1;
 }
 
@@ -7199,7 +7199,7 @@ Function:Plant_Load()
         cache_get_value_int(i, "plantFarm", PlantData[i][plantFarm]);
         Plant_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] plant data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] plant data (%d count).", rows);
     return 1;
 }
 
@@ -7223,7 +7223,7 @@ Function:Plant_Load()
 
 //         Crate_Refresh(i);
 //     }
-//     printf("*** [East Side Roleplay Database: Loaded] crates data (%d count).", rows);
+//     printf("*** [Red Redemption Roleplay Database: Loaded] crates data (%d count).", rows);
 //     return 1;
 // }
 
@@ -7255,7 +7255,7 @@ Function:Job_Load()
 
         mysql_tquery(g_iHandle, sprintf("SELECT * FROM `player_vehicles` WHERE `Owner`='0' AND `Job`='%d' ORDER BY `ID` DESC", JobData[i][jobType]), "Vehicle_Load", "");
     }
-    printf("*** [East Side Roleplay Database: Loaded] job data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] job data (%d count).", rows);
     return 1;
 }
 
@@ -7302,7 +7302,7 @@ Function:Entrance_Load()
 
         Entrance_Refresh(id);
     }
-    printf("*** [East Side Roleplay Database: Loaded] entrance data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] entrance data (%d count).", rows);
     return 1;
 }
 
@@ -7334,7 +7334,7 @@ Function:OnDealership_Load()
 
         Dealership_Refresh(i);
     }
-    printf("*** [East Side Roleplay Database: Loaded] dealership data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] dealership data (%d count).", rows);
     return 1;
 }
 
@@ -7387,7 +7387,7 @@ Function:Dropped_Load()
         }
         DroppedItems[i][droppedLabel] = CreateDynamic3DTextLabel(DroppedItems[i][droppedItem], 0xFFFFFFAA, DroppedItems[i][droppedPos][0], DroppedItems[i][droppedPos][1], DroppedItems[i][droppedPos][2], 2.5, _, _, _, DroppedItems[i][droppedWorld],DroppedItems[i][droppedInt]);
     }
-    printf("*** [East Side Roleplay Database: Loaded] dropped item data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] dropped item data (%d count).", rows);
     return 1;
 }
 
@@ -7469,7 +7469,7 @@ Function:Business_Load()
             mysql_tquery(g_iHandle, str, "Business_LoadCars", "d", i);
         }
     }
-    printf("*** [East Side Roleplay Database: Loaded] business data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] business data (%d count).", rows);
     return 1;
 }
 
@@ -7532,7 +7532,7 @@ Function:House_Load()
             mysql_tquery(g_iHandle, str, "OnLoadHouseStructure", "d", j);
         }
     }
-    printf("*** [East Side Roleplay Database: Loaded] house data (%d count).", rows);
+    printf("*** [Red Redemption Roleplay Database: Loaded] house data (%d count).", rows);
     return 1;
 }
 
@@ -17883,7 +17883,7 @@ Function:OnQueryFinished(extraid, threadid, race_check)
                 mysql_tquery(g_iHandle, email_query);
 
                 format(email_text, sizeof(email_text),"NAMA:%s#NAMA:%s#ADDRESS:%s#KONFIRMASI:%s", ReturnName(extraid), ReturnName(extraid), ReturnIP(extraid), AccountData[extraid][pVerifyCode]);
-                // SendEmail("East Side Roleplay", AccountData[extraid][pMail], "[East Side Roleplay] Verifikasi akun anda", email_text, true, "default.html");
+                // SendEmail("Red Redemption Roleplay", AccountData[extraid][pMail], "[Red Redemption Roleplay] Verifikasi akun anda", email_text, true, "default.html");
 
                 stop AccountData[extraid][pEmailTimer];
                 AccountData[extraid][pEmailTimer] = defer refuseVCode(extraid);
@@ -18777,7 +18777,7 @@ Function:Static_Load()
             ServerData[cargoStock][i] = 1000;
         }
     }
-    print("*** [East Side Roleplay Database: Loaded] server data (motd, record, fish price, plant price, cargo stock).");
+    print("*** [Red Redemption Roleplay Database: Loaded] server data (motd, record, fish price, plant price, cargo stock).");
     return 1;
 }
 
@@ -18799,7 +18799,7 @@ Function:Static_Load()
 //         BillBoardData[i][bbPos][2] = cache_get_value_float(i, "bbPosZ");
 //         Billboard_Refresh(i);
 //     }
-//     printf("\n****************************** SERVER CONFIGURATE ******************************\n\n*** [East Side Roleplay Database: Loaded] billboard data (%d count).", cache_num_rows());
+//     printf("\n****************************** SERVER CONFIGURATE ******************************\n\n*** [Red Redemption Roleplay Database: Loaded] billboard data (%d count).", cache_num_rows());
 //     return 1;
 // }
 
@@ -24613,7 +24613,7 @@ static LoadServerPickup()
 
 static LoadGlobalTextdraws()
 {
-    WelcomeTD = TextDrawCreate(320.000, 134.000, "Welcome to East Side");
+    WelcomeTD = TextDrawCreate(320.000, 134.000, "Welcome to Red Redemption");
     TextDrawLetterSize(WelcomeTD, 0.919, 2.999);
     TextDrawAlignment(WelcomeTD, 2);
     TextDrawColor(WelcomeTD, -1);
@@ -24658,7 +24658,7 @@ static LoadGlobalTextdraws()
     TextDrawSetShadow(gServerTextdraws[1], 0);
     
 	// watermark
-	/*gServerTextdraws[2] = TextDrawCreate(505.300048, 6.124995, "~y~East Side ~w~Roleplay v0.0.3");
+	/*gServerTextdraws[2] = TextDrawCreate(505.300048, 6.124995, "~y~Red Redemption ~w~Roleplay v0.0.3");
 	TextDrawLetterSize(gServerTextdraws[2], 0.272000, 1.114374);
 	TextDrawAlignment(gServerTextdraws[2], 1);
 	TextDrawColor(gServerTextdraws[2], 0xFFFFFFFF);
@@ -24670,27 +24670,27 @@ static LoadGlobalTextdraws()
 	TextDrawSetShadow(gServerTextdraws[2], 0);*/
 
     //watermarknew
-    watermark[0] = TextDrawCreate(318.000, 6.000, "East Side");
-    TextDrawLetterSize(watermark[0], 0.310, 1.499);
+    watermark[0] = TextDrawCreate(257.000, 3.000, "Red");
+    TextDrawLetterSize(watermark[0], 0.200, 1.199);
     TextDrawAlignment(watermark[0], 2);
-    TextDrawColor(watermark[0], -1605227009);
-    TextDrawSetShadow(watermark[0], 0);
+    TextDrawColor(watermark[0], -16776961);
+    TextDrawSetShadow(watermark[0], 1);
     TextDrawSetOutline(watermark[0], 1);
-    TextDrawBackgroundColor(watermark[0], -1);
-    TextDrawFont(watermark[0], 3);
+    TextDrawBackgroundColor(watermark[0], 150);
+    TextDrawFont(watermark[0], 1);
     TextDrawSetProportional(watermark[0], 1);
 
-    watermark[1] = TextDrawCreate(318.000, 14.000, "Roleplay");
-    TextDrawLetterSize(watermark[1], 0.439, 1.399);
+    watermark[1] = TextDrawCreate(328.000, 3.000, "Redemption - VS v0.0.1QC Variabel");
+    TextDrawLetterSize(watermark[1], 0.200, 1.199);
     TextDrawAlignment(watermark[1], 2);
     TextDrawColor(watermark[1], -1);
     TextDrawSetShadow(watermark[1], 1);
     TextDrawSetOutline(watermark[1], 1);
-    TextDrawBackgroundColor(watermark[1], -1605227009);
-    TextDrawFont(watermark[1], 0);
+    TextDrawBackgroundColor(watermark[1], 150);
+    TextDrawFont(watermark[1], 1);
     TextDrawSetProportional(watermark[1], 1);
     
-    gServerTextdraws[3] = TextDrawCreate(243.000000, 432.000000, "East Side Roleplay");
+    gServerTextdraws[3] = TextDrawCreate(243.000000, 432.000000, "Red Redemption Roleplay");
     TextDrawFont(gServerTextdraws[3], 1);
     TextDrawLetterSize(gServerTextdraws[3], 0.174999, 1.350000);
     TextDrawTextSize(gServerTextdraws[3], 487.000000, 17.000000);
@@ -30257,10 +30257,10 @@ OnGameModeInit_Setup()
 
     #if defined DEVELOPMENT
         printf("[SERVER]: Under development mode is enabled!");
-        SendRconCommand("hostname East Side Roleplay");
+        SendRconCommand("hostname Red Redemption Roleplay");
         SendRconCommand("maxplayers 1000");
     #else
-        SendRconCommand("hostname East Side Roleplay");
+        SendRconCommand("hostname Red Redemption Roleplay");
         GamemodeInit = repeat UnlockServer();
     #endif
     return 1;
@@ -32568,7 +32568,7 @@ public SendAdminCode(uname[], userId[], owner[], codeadmin[])
         mysql_tquery(g_iHandle, string);
 
 		new zstr[300];
-		format(zstr, sizeof(zstr), "Selamat!!!\nPassword admin untuk akun %s berhasil didaftarkan.\nSilahkan login ke game serta memasukkan kode administrator dibawah ini:\n\n> %s\n\nTerimakasih telah menjadi salah satu STAFF East Side Roleplay, semoga kedepannya makin berkembang 😉", uname, codeadmin);
+		format(zstr, sizeof(zstr), "Selamat!!!\nPassword admin untuk akun %s berhasil didaftarkan.\nSilahkan login ke game serta memasukkan kode administrator dibawah ini:\n\n> %s\n\nTerimakasih telah menjadi salah satu STAFF Red Redemption Roleplay, semoga kedepannya makin berkembang 😉", uname, codeadmin);
 		DCC_SendChannelMessage(PM, zstr);
 
 		new ystr[256];
@@ -33231,7 +33231,7 @@ public ReSendPassword(uname[], userId[], owner[], password[])
         format(verif, sizeof(verif), "PWADMIN%d", RandomEx(10000, 99999));
 
 		new zstr[256];
-		format(zstr, sizeof(zstr), "Selamat!!!\nPassword admin untuk akun %s berhasil didaftarkan.\nSilahkan login ke game serta memasukkan kode administrator dibawah ini:\n\n> %s\n\nTerimakasih telah menjadi salah satu STAFF East Side Roleplay, semoga kedepannya makin berkembang 😉", unamee, verif);
+		format(zstr, sizeof(zstr), "Selamat!!!\nPassword admin untuk akun %s berhasil didaftarkan.\nSilahkan login ke game serta memasukkan kode administrator dibawah ini:\n\n> %s\n\nTerimakasih telah menjadi salah satu STAFF Red Redemption Roleplay, semoga kedepannya makin berkembang 😉", unamee, verif);
 		DCC_SendChannelMessage(PM, zstr);
 
 		new str[256];
@@ -33239,7 +33239,7 @@ public ReSendPassword(uname[], userId[], owner[], password[])
 		DCC_SendChannelMessage(Pwadmin, str);
 
 		new zquery[5000];
- 	mysql_format(g_iHandle,zquery,sizeof(zquery),"INSERT INTO `accounts` (`ID`, `Username`, `Password`, `Salt`, `Email`, `PhoneNumber`, `IP`, `LeaveIP`, `Banned`, `Admin`, `Adminname`, `AdminDuty`, `AdminHide`, `ReportPoint`, `RegisterDate`, `LoginDate`, `AdminRankName`, `VerifyCode`, `Volunteer`, `WhiteList`, `DiscordID`) VALUES('%d', '%e', '', '', 'East Side Roleplay@gmail.com[None]', '0', '0', '0.0.0.0', '0', '0', '', '0', '0', '0', '0', '0', 'None', '%e', '0', '0', '%e')", cache_insert_id(), message, verif, userId);
+ 	mysql_format(g_iHandle,zquery,sizeof(zquery),"INSERT INTO `accounts` (`ID`, `Username`, `Password`, `Salt`, `Email`, `PhoneNumber`, `IP`, `LeaveIP`, `Banned`, `Admin`, `Adminname`, `AdminDuty`, `AdminHide`, `ReportPoint`, `RegisterDate`, `LoginDate`, `AdminRankName`, `VerifyCode`, `Volunteer`, `WhiteList`, `DiscordID`) VALUES('%d', '%e', '', '', 'Red Redemption Roleplay@gmail.com[None]', '0', '0', '0.0.0.0', '0', '0', '', '0', '0', '0', '0', '0', 'None', '%e', '0', '0', '%e')", cache_insert_id(), message, verif, userId);
 		mysql_tquery(g_iHandle,zquery);
 
 		format(zquery,sizeof(zquery),"UPDATE `accounts` SET `PasswordAdmin`='%s' WHERE `Username`='%s'",verif,unamee);
@@ -33499,7 +33499,7 @@ CMD:testemail(playerid, params[]) {
 
     new email_text[128];
     format(email_text, sizeof(email_text),"NAMA:%s#NAMA:%s#ADDRESS:%s#KONFIRMASI:%s", ReturnName(playerid), ReturnName(playerid), ReturnIP(playerid), AccountData[playerid][pVerifyCode]);
-    // SendEmail("East Side Roleplay", AccountData[playerid][pMail], "[East Side Roleplay] Verifikasi akun anda", email_text, true, "default.html");
+    // SendEmail("Red Redemption Roleplay", AccountData[playerid][pMail], "[Red Redemption Roleplay] Verifikasi akun anda", email_text, true, "default.html");
     SendCustomMessage(playerid, "TESTEMAIL", "Test email was successfully send!");
     return 1;
 }
@@ -34540,7 +34540,7 @@ CMD:changelog(playerid)
         |- Change Location Getcrate Component\n\
         "RED"Bug fixed/Deleted:"WHITE"\n\
         |- Fix Component Warehouse in Gps or Map\n\
-        "RED"Last Update Change By East Side Comunitas"WHITE"\n\
+        "RED"Last Update Change By Red Redemption Comunitas"WHITE"\n\
         "WHITE"* Untuk informasi lebih lanjut silahkan kunjungi Discord kami di %s.","Close","", SERVER_REVISION,SERVER_DISCORD
     );
 
@@ -53983,7 +53983,7 @@ CMD:boombox(playerid, params[])
             return SendErrorMessage(playerid, "You are not in range of your boombox.");
 
     	format(string, sizeof(string), "Judul Lagu\tDurasi\n{ffffff}Sempurna\t{C6E2FF}04:47\n{ffffff}Resah Jadi Luka\t{C6E2FF}04:34\n{ffffff}Selamat Tinggal\t{C6E2FF}05:53\n{ffffff}Pedih\t{C6E2FF}04:38\n{ffffff}Summertime Sadness\t{C6E2FF}04:25\n{ffffff}Duka\t{C6E2FF}05:23\n{ffffff}Royalty\t{C6E2FF}03:44\n{ffffff}Train Wreck\t{C6E2FF}03:29\n{ffffff}A Year Ago\t{C6E2FF}02:51\n{ffffff}A Thousand Years\t{C6E2FF}04:11\n{ffffff}Impossible\t{C6E2FF}03:27\n{ffffff}Can I Be Him\t{C6E2FF}04:11\n{ffffff}Rewrite The Stars\t{C6E2FF}03:48\n{ffffff}Car's Outside\t{C6E2FF}04:06\n{ffffff}Locked Out of Heaven\t{C6E2FF}04:14\n{ffffff}Right Now\t{C6E2FF}03:22\n{ffffff}18\t{C6E2FF}04:09\n{ffffff}Surat Cinta Untuk Starla\t{C6E2FF}04:22\n{ffffff}Kenanglah Aku Speed Up Reverb\t{C6E2FF}03:05\n{ffffff}Loreen - Tatto\t{C6E2FF}02:22\n");
-		Dialog_Show(playerid, BBList, DIALOG_STYLE_TABLIST_HEADERS, "East Side - Boombox", string, "Putar", "Cancel");
+		Dialog_Show(playerid, BBList, DIALOG_STYLE_TABLIST_HEADERS, "Red Redemption - Boombox", string, "Putar", "Cancel");
     }
     return 1;
 }
@@ -54531,7 +54531,7 @@ CMD:stopsong(playerid)
 
 /*CMD:serverupdates(playerid)
 {
-    Dialog_Show(playerid, dialoghilang, DIALOG_STYLE_MSGBOX, "List Server Update", "{ff0000}UPDATE TERBARU YANG PALING ATAS\n {ffff00}#East Side v1.0.3a Thousand:\n  {ffffff}- Change sistem Trashmaster sidejob\n  {ffffff}- Ketika polisi onduty, toll tidak bayar\n  {ffffff}- Ketika EMS onduty, toll tidak bayar\n  {ffffff}- Add cmd helper /setcs\n  {ffffff}- Add cmd /cpc untuk admin mengirim kendaraan ke player\n  {ffffff}- Add cmd /pcp untuk admin mengirim player ke kendaraan\n  {ffffff}- Forceinsurance set akses to helper\n  {ffffff}- Add 7 private farm (last)\n  {ffffff}- Fix /banacp ke kick semua\n  {ffffff}- Fix gps workshop\n  {ffffff}- Fix player drag berdiri\n  {ffffff}- Ketika kendaraan masuk insu, akan ada nama player yang menghancurkannya\n  {ffffff}- sistem /reply bisa digunakan baik menggunakan dialog maupun langsung Contoh:\n  {ffffff}  - dialog reply /reply | reply langsung /reply text\n  {ffffff}- Add /osetskin for admin\n  {ffffff}- Add /ostats for admin\n  {ffffff}- Fix helper no akses /forceinsurance\n {ffff00}#East Side v1.0.3 Thousand:\n  {ffffff}- Change sistem Bus\n  {ffffff}- Fix forager uang ga ngotak\n  {ffffff}- Add forager tomato\n  {ffffff}- Fix sellplant farmer\n  {ffffff}- Fix unloadplant farmer\n  {ffffff}- Remove setplayerbank administrator\n  {ffffff}- Add /agun akses administrator minim level management\n  {ffffff}- Change interior LSPD\n  {ffffff}- Add beberapa door / gate didalam interior LSPD\n  {ffffff}- Add 20 house interior\n  {ffffff}- Fix impound hilang saat restart\n  {ffffff}- Fix gps impound nyasar\n  {ffffff}- Fix asks administrator\n  {ffffff}- Fix drag membuat player injured bisa gerak\n  {ffffff}- Fix anim injured hilang\n  {ffffff}- Add mappingan 78NATTION\n{ff0000}Hanya Tersedia 2 Versi Disini\n{ff0000}Untuk yang lainnya bisa cek diWebsite Resmi East Side Roleplay.", "Tutup", "");
+    Dialog_Show(playerid, dialoghilang, DIALOG_STYLE_MSGBOX, "List Server Update", "{ff0000}UPDATE TERBARU YANG PALING ATAS\n {ffff00}#Red Redemption v1.0.3a Thousand:\n  {ffffff}- Change sistem Trashmaster sidejob\n  {ffffff}- Ketika polisi onduty, toll tidak bayar\n  {ffffff}- Ketika EMS onduty, toll tidak bayar\n  {ffffff}- Add cmd helper /setcs\n  {ffffff}- Add cmd /cpc untuk admin mengirim kendaraan ke player\n  {ffffff}- Add cmd /pcp untuk admin mengirim player ke kendaraan\n  {ffffff}- Forceinsurance set akses to helper\n  {ffffff}- Add 7 private farm (last)\n  {ffffff}- Fix /banacp ke kick semua\n  {ffffff}- Fix gps workshop\n  {ffffff}- Fix player drag berdiri\n  {ffffff}- Ketika kendaraan masuk insu, akan ada nama player yang menghancurkannya\n  {ffffff}- sistem /reply bisa digunakan baik menggunakan dialog maupun langsung Contoh:\n  {ffffff}  - dialog reply /reply | reply langsung /reply text\n  {ffffff}- Add /osetskin for admin\n  {ffffff}- Add /ostats for admin\n  {ffffff}- Fix helper no akses /forceinsurance\n {ffff00}#Red Redemption v1.0.3 Thousand:\n  {ffffff}- Change sistem Bus\n  {ffffff}- Fix forager uang ga ngotak\n  {ffffff}- Add forager tomato\n  {ffffff}- Fix sellplant farmer\n  {ffffff}- Fix unloadplant farmer\n  {ffffff}- Remove setplayerbank administrator\n  {ffffff}- Add /agun akses administrator minim level management\n  {ffffff}- Change interior LSPD\n  {ffffff}- Add beberapa door / gate didalam interior LSPD\n  {ffffff}- Add 20 house interior\n  {ffffff}- Fix impound hilang saat restart\n  {ffffff}- Fix gps impound nyasar\n  {ffffff}- Fix asks administrator\n  {ffffff}- Fix drag membuat player injured bisa gerak\n  {ffffff}- Fix anim injured hilang\n  {ffffff}- Add mappingan 78NATTION\n{ff0000}Hanya Tersedia 2 Versi Disini\n{ff0000}Untuk yang lainnya bisa cek diWebsite Resmi Red Redemption Roleplay.", "Tutup", "");
     return 1;
 }*/
 
@@ -54601,7 +54601,7 @@ CMD:spotify(playerid)
 {
     new string[2000];
     format(string, sizeof(string), "Judul Lagu\tDurasi\n{ffffff}Sempurna\t{C6E2FF}04:47\n{ffffff}Resah Jadi Luka\t{C6E2FF}04:34\n{ffffff}Selamat Tinggal\t{C6E2FF}05:53\n{ffffff}Pedih\t{C6E2FF}04:38\n{ffffff}Summertime Sadness\t{C6E2FF}04:25\n{ffffff}Duka\t{C6E2FF}05:23\n{ffffff}Royalty ( Cocok untuk Perang / Pursuit )\t{C6E2FF}03:44\n{ffffff}Train Wreck\t{C6E2FF}03:29\n{ffffff}A Year Ago\t{C6E2FF}02:51\n{ffffff}A Thousand Years\t{C6E2FF}04:11\n{ffffff}Impossible\t{C6E2FF}03:27\n{ffffff}Can I Be Him\t{C6E2FF}04:11\n{ffffff}Rewrite The Stars\t{C6E2FF}03:48\n{ffffff}Car's Outside\t{C6E2FF}04:06\n{ffffff}Locked Out of Heaven\t{C6E2FF}04:14\n{ffffff}Right Now\t{C6E2FF}03:22\n{ffffff}18\t{C6E2FF}04:09\n{ffffff}Surat Cinta Untuk Starla\t{C6E2FF}04:22\n{ffffff}Kenanglah Aku Speed Up Reverb\t{C6E2FF}03:05\n{ffffff}Loreen - Tatto ( Cocok untuk Perang / Pursuit )\t{C6E2FF}02:22\n{ffffff}Punya Link Lagu? Kesini Aja.\t{C6E2FF}-\n");
-	Dialog_Show(playerid, spotify, DIALOG_STYLE_TABLIST_HEADERS, "East Side Roleplay - Spotify", string, "Putar", "Cancel");
+	Dialog_Show(playerid, spotify, DIALOG_STYLE_TABLIST_HEADERS, "Red Redemption Roleplay - Spotify", string, "Putar", "Cancel");
 	return 1;
 }
 
@@ -57042,7 +57042,7 @@ CMD:call(playerid, params[])
     format(AccountData[userid][pAdminRankName], 25, name);
 
     //SendClientMessageEx(userid, X11_LIGHTBLUE,"RANKNAME: "YELLOW"%s has changed your rank name to %s.",ReturnName(playerid,1),name);
-    //SendAdminMessage(X11_TOMATO_1,"AdmCmd: %s has set %s to di East Side Roleplay %s.", ReturnName2(playerid), ReturnName(userid), name);
+    //SendAdminMessage(X11_TOMATO_1,"AdmCmd: %s has set %s to di Red Redemption Roleplay %s.", ReturnName2(playerid), ReturnName(userid), name);
     return 1;
 }*/
 
@@ -62756,8 +62756,8 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 
 					SetPlayerListitemValue(playerid, count++, i);
 				}
-				if(!count) Dialog_Show(playerid, dialoghilang, DIALOG_STYLE_MSGBOX, "East Side - Give Item", "Tidak ada player disekitarmu", "Tutup", ""), PlayerPlaySound(playerid, 1055, 0.0, 0.0, 0.0);
-				else Dialog_Show(playerid, GiveItem, DIALOG_STYLE_LIST, "East Side - Give Item", String, "Pilih", "Batal");
+				if(!count) Dialog_Show(playerid, dialoghilang, DIALOG_STYLE_MSGBOX, "Red Redemption - Give Item", "Tidak ada player disekitarmu", "Tutup", ""), PlayerPlaySound(playerid, 1055, 0.0, 0.0, 0.0);
+				else Dialog_Show(playerid, GiveItem, DIALOG_STYLE_LIST, "Red Redemption - Give Item", String, "Pilih", "Batal");
             }
             case 2:
             {
@@ -65620,7 +65620,7 @@ Dialog:spotify(playerid, response, listitem, inputtext[])
 			{
  				new gstr[500];
 			    format(gstr,sizeof(gstr),"Hai %s, Bagaimana harimu?\nMasukkan link mp3 dibawah untuk memutar Lagu", ReturnName(playerid));
-				Dialog_Show(playerid, spotifylink, DIALOG_STYLE_INPUT, "East Side - Spotify", gstr, "Putar", "Back");
+				Dialog_Show(playerid, spotifylink, DIALOG_STYLE_INPUT, "Red Redemption - Spotify", gstr, "Putar", "Back");
 			}
 		}
     }
@@ -69669,8 +69669,8 @@ Dialog:GiveKey(playerid, response, listitem, inputtext[]) {
 
 				SetPlayerListitemValue(playerid, count++, ii);
 			}
-			if(!count) Dialog_Show(playerid, dialoghilang, DIALOG_STYLE_MSGBOX, "East Side - Give Keys", "Tidak ada player disekitarmu", "Tutup", ""), PlayerPlaySound(playerid, 1055, 0.0, 0.0, 0.0);
-			else Dialog_Show(playerid, KeyGive, DIALOG_STYLE_LIST, "East Side - Give Key", String, "Bagikan", "Keluar");
+			if(!count) Dialog_Show(playerid, dialoghilang, DIALOG_STYLE_MSGBOX, "Red Redemption - Give Keys", "Tidak ada player disekitarmu", "Tutup", ""), PlayerPlaySound(playerid, 1055, 0.0, 0.0, 0.0);
+			else Dialog_Show(playerid, KeyGive, DIALOG_STYLE_LIST, "Red Redemption - Give Key", String, "Bagikan", "Keluar");
 		}
     }
     return 1;

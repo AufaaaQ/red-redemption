@@ -42,7 +42,7 @@ Function:Vending_Load() {
         Iter_Add(Vendings, id);
         Vending_Refresh(id);
     }
-    printf("*** [East Side Database: Loaded] vending machine data (%d count)", rows);
+    printf("*** [Red Redemption Database: Loaded] vending machine data (%d count)", rows);
     return 1;
 }
 
