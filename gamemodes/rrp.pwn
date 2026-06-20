@@ -99,6 +99,7 @@ new Float:modshop_center[] = {
 	2235.0, -2000.0, 2286.0, -2000.0, 2286.0, -1982.0, 2235.0, -1981.0, 2235.0, -2000.0
 };
 
+new Text: Background[7];
 new Text: watermark[2];
 new Text:paintcar[5];
 new Text:select;
@@ -2561,9 +2562,9 @@ SetPlayerHunger(playerid, Float:hunger)
                 SetPlayerProgressBarColour(playerid, PlayerData[playerid][hungry], ConvertHBEColor(floatround(PlayerData[playerid][pHunger])));
             }
             case 2: {
-                PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], ConvertHBEColor(floatround(PlayerData[playerid][pHunger])));
-                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], sprintf("%.0f%",PlayerData[playerid][pHunger]));
+                new Float:barWidth = (PlayerData[playerid][pHunger] / 100.0) * 54.0;
+                PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], barWidth, 5.000);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
             }
             case 3: {
                 new Float:barWidth = (PlayerData[playerid][pHunger] / 100.0) * 44.0;
@@ -2592,9 +2593,9 @@ SetPlayerEnergy(playerid, Float:energi)
                 SetPlayerProgressBarColour(playerid, PlayerData[playerid][energy], ConvertHBEColor(floatround(PlayerData[playerid][pEnergy])));
             }
             case 2: {
-                PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], ConvertHBEColor(floatround(PlayerData[playerid][pEnergy])));
-                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
-                PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], sprintf("%.0f%",PlayerData[playerid][pEnergy]));
+                new Float:barWidth = (PlayerData[playerid][pEnergy] / 100.0) * 54.0;
+                PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], barWidth, 5.000);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
             }
             case 3: {
                 new Float:barWidth = (PlayerData[playerid][pEnergy] / 100.0) * 44.0;
@@ -6210,12 +6211,12 @@ ShowHungerTextdraw(playerid)
                 ShowPlayerProgressBar(playerid, PlayerData[playerid][energy]);
             }
             case 2: {
-                PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], ConvertHBEColor(floatround(PlayerData[playerid][pHunger])));
-                PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], ConvertHBEColor(floatround(PlayerData[playerid][pEnergy])));
-                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
-                PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], sprintf("%.0f%",PlayerData[playerid][pHunger]));
-                PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], sprintf("%.0f%",PlayerData[playerid][pEnergy]));
+                new Float:makanWidth = (PlayerData[playerid][pHunger] / 100.0) * 54.0;
+                new Float:minumWidth = (PlayerData[playerid][pEnergy] / 100.0) * 54.0;
+                PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], makanWidth, 5.000);
+                PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], minumWidth, 5.000);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
             }
             case 3: {
                 for (new i = 12; i < 20; i++) {
@@ -6256,8 +6257,9 @@ ShowHungerTextdraw(playerid)
                 HidePlayerProgressBar(playerid, PlayerData[playerid][energy]);
             }
             case 2: {
-                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
+                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
+                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
+                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9]);
             }
             case 3: {
                 for (new i = 12; i < 20; i++) {
@@ -14833,76 +14835,41 @@ CreateTextDraws(playerid)
     PlayerTextDrawSetProportional(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][6], 1);
     PlayerTextDrawSetSelectable(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][6], 0);
 
-    // Player HUD 2
-    PlayerTextdraws[playerid][textdraw_playerGUI][7] = CreatePlayerTextDraw(playerid, 604.000000, 330.000000, "_");
-    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 1);
-    PlayerTextDrawLetterSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 0.600000, 6.050000);
-    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 303.500000, 62.500000);
-    PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 1);
-    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 0);
-    PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 2);
+    // Player HUD 2 (Simple Mode) - BarHungry fill bar
+    PlayerTextdraws[playerid][textdraw_playerGUI][7] = CreatePlayerTextDraw(playerid, 565.000, 405.000, "LD_SPAC:white");
+    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 54.000, 5.000);
+    PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 1);
     PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], -1);
+    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 0);
+    PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 0);
     PlayerTextDrawBackgroundColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 255);
-    PlayerTextDrawBoxColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 135);
-    PlayerTextDrawUseBox(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 1);
+    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 4);
     PlayerTextDrawSetProportional(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 1);
     PlayerTextDrawSetSelectable(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], 0);
 
-    PlayerTextdraws[playerid][textdraw_playerGUI][8] = CreatePlayerTextDraw(playerid, 577.000000, 340.000000, "Hunger_:");
-    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 1);
-    PlayerTextDrawLetterSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 0.191666, 1.449998);
-    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 400.000000, 17.000000);
-    PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 1);
-    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 0);
+    // Player HUD 2 (Simple Mode) - BarThristy fill bar
+    PlayerTextdraws[playerid][textdraw_playerGUI][8] = CreatePlayerTextDraw(playerid, 565.000, 423.000, "LD_SPAC:white");
+    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 54.000, 5.000);
     PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 1);
     PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], -1);
+    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 0);
+    PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 0);
     PlayerTextDrawBackgroundColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 255);
-    PlayerTextDrawBoxColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 0);
-    PlayerTextDrawUseBox(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 1);
+    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 4);
     PlayerTextDrawSetProportional(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 1);
     PlayerTextDrawSetSelectable(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], 0);
 
-    PlayerTextdraws[playerid][textdraw_playerGUI][9] = CreatePlayerTextDraw(playerid, 577.000000, 361.000000, "Energy_:");
-    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
-    PlayerTextDrawLetterSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 0.191666, 1.449998);
-    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 400.000000, 17.000000);
+    // Player HUD 2 (Simple Mode) - MoneyHUD text
+    PlayerTextdraws[playerid][textdraw_playerGUI][9] = CreatePlayerTextDraw(playerid, 588.000, 382.000, "$1,000,000");
+    PlayerTextDrawLetterSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 0.170, 1.199);
+    PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 2);
+    PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 852308735);
+    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
     PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
-    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 0);
-    PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
-    PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], -1);
-    PlayerTextDrawBackgroundColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 255);
-    PlayerTextDrawBoxColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 0);
-    PlayerTextDrawUseBox(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
+    PlayerTextDrawBackgroundColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 150);
+    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
     PlayerTextDrawSetProportional(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 1);
     PlayerTextDrawSetSelectable(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], 0);
-
-    PlayerTextdraws[playerid][textdraw_playerGUI][10] = CreatePlayerTextDraw(playerid, 611.000000, 341.000000, "991%");
-    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 1);
-    PlayerTextDrawLetterSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 0.191666, 1.349997);
-    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 400.000000, 17.000000);
-    PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 1);
-    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 0);
-    PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 1);
-    PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], -1);
-    PlayerTextDrawBackgroundColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 255);
-    PlayerTextDrawBoxColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 0);
-    PlayerTextDrawUseBox(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 1);
-    PlayerTextDrawSetProportional(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 1);
-    PlayerTextDrawSetSelectable(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], 0);
-
-    PlayerTextdraws[playerid][textdraw_playerGUI][11] = CreatePlayerTextDraw(playerid, 611.000000, 362.000000, "992%");
-    PlayerTextDrawFont(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 1);
-    PlayerTextDrawLetterSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 0.191666, 1.349997);
-    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 400.000000, 17.000000);
-    PlayerTextDrawSetOutline(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 1);
-    PlayerTextDrawSetShadow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 0);
-    PlayerTextDrawAlignment(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 1);
-    PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], -1);
-    PlayerTextDrawBackgroundColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 255);
-    PlayerTextDrawBoxColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 0);
-    PlayerTextDrawUseBox(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 1);
-    PlayerTextDrawSetProportional(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 1);
-    PlayerTextDrawSetSelectable(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], 0);
 
     // Player HUD 3 (Semi Modern)
     PlayerTextdraws[playerid][textdraw_playerGUI][12] = CreatePlayerTextDraw(playerid, 14.000, 193.000, "LD_DUAL:white");
@@ -18934,12 +18901,12 @@ Function:SpawnTimer(playerid)
                     ShowPlayerProgressBar(playerid, PlayerData[playerid][energy]);
                     }
                 case 2: {
-                    PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], ConvertHBEColor(floatround(PlayerData[playerid][pHunger])));
-                    PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], ConvertHBEColor(floatround(PlayerData[playerid][pEnergy])));
-                    PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                    PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
-                    PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], sprintf("%.0f%",PlayerData[playerid][pHunger]));
-                    PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], sprintf("%.0f%",PlayerData[playerid][pEnergy]));
+                    new Float:makanWidth = (PlayerData[playerid][pHunger] / 100.0) * 54.0;
+                    new Float:minumWidth = (PlayerData[playerid][pEnergy] / 100.0) * 54.0;
+                    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], makanWidth, 5.000);
+                    PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], minumWidth, 5.000);
+                    PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
+                    PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
                 }
             }
 
@@ -23374,6 +23341,9 @@ public OnPlayerUpdate(playerid)
     }
 
     PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][5], sprintf("$%s",FormatNumber(GetMoney(playerid))));
+    if (PlayerData[playerid][pHUD] == 2) {
+        PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9], sprintf("$%s",FormatNumber(GetMoney(playerid))));
+    }
     
     if(PlayerData[playerid][pAFK] == 0)
     {
@@ -24695,6 +24665,76 @@ static LoadGlobalTextdraws()
     TextDrawBackgroundColor(watermark[1], 150);
     TextDrawFont(watermark[1], 1);
     TextDrawSetProportional(watermark[1], 1);
+
+    Background[0] = TextDrawCreate(548.000, 417.000, "LD_SPAC:black");
+    TextDrawTextSize(Background[0], 75.000, 17.000);
+    TextDrawAlignment(Background[0], 1);
+    TextDrawColor(Background[0], -1);
+    TextDrawSetShadow(Background[0], 0);
+    TextDrawSetOutline(Background[0], 0);
+    TextDrawBackgroundColor(Background[0], 255);
+    TextDrawFont(Background[0], 4);
+    TextDrawSetProportional(Background[0], 1);
+
+    Background[1] = TextDrawCreate(548.000, 398.000, "LD_SPAC:black");
+    TextDrawTextSize(Background[1], 75.000, 17.000);
+    TextDrawAlignment(Background[1], 1);
+    TextDrawColor(Background[1], -1);
+    TextDrawSetShadow(Background[1], 0);
+    TextDrawSetOutline(Background[1], 0);
+    TextDrawBackgroundColor(Background[1], 255);
+    TextDrawFont(Background[1], 4);
+    TextDrawSetProportional(Background[1], 1);
+
+    Background[2] = TextDrawCreate(548.000, 379.000, "LD_SPAC:black");
+    TextDrawTextSize(Background[2], 75.000, 17.000);
+    TextDrawAlignment(Background[2], 1);
+    TextDrawColor(Background[2], -1);
+    TextDrawSetShadow(Background[2], 0);
+    TextDrawSetOutline(Background[2], 0);
+    TextDrawBackgroundColor(Background[2], 255);
+    TextDrawFont(Background[2], 4);
+    TextDrawSetProportional(Background[2], 1);
+
+    Background[3] = TextDrawCreate(549.000, 399.000, "HUD:radar_pizza");
+    TextDrawTextSize(Background[3], 15.000, 15.000);
+    TextDrawAlignment(Background[3], 1);
+    TextDrawColor(Background[3], -1);
+    TextDrawSetShadow(Background[3], 0);
+    TextDrawSetOutline(Background[3], 0);
+    TextDrawBackgroundColor(Background[3], 255);
+    TextDrawFont(Background[3], 4);
+    TextDrawSetProportional(Background[3], 1);
+
+    Background[4] = TextDrawCreate(549.000, 417.000, "HUD:radar_diner");
+    TextDrawTextSize(Background[4], 15.000, 15.000);
+    TextDrawAlignment(Background[4], 1);
+    TextDrawColor(Background[4], -1);
+    TextDrawSetShadow(Background[4], 0);
+    TextDrawSetOutline(Background[4], 0);
+    TextDrawBackgroundColor(Background[4], 255);
+    TextDrawFont(Background[4], 4);
+    TextDrawSetProportional(Background[4], 1);
+
+    Background[5] = TextDrawCreate(565.000, 423.000, "LD_SPAC:white");
+    TextDrawTextSize(Background[5], 54.000, 5.000);
+    TextDrawAlignment(Background[5], 1);
+    TextDrawColor(Background[5], 1768516095);
+    TextDrawSetShadow(Background[5], 0);
+    TextDrawSetOutline(Background[5], 0);
+    TextDrawBackgroundColor(Background[5], 255);
+    TextDrawFont(Background[5], 4);
+    TextDrawSetProportional(Background[5], 1);
+
+    Background[6] = TextDrawCreate(565.000, 405.000, "LD_SPAC:white");
+    TextDrawTextSize(Background[6], 54.000, 5.000);
+    TextDrawAlignment(Background[6], 1);
+    TextDrawColor(Background[6], 1768516095);
+    TextDrawSetShadow(Background[6], 0);
+    TextDrawSetOutline(Background[6], 0);
+    TextDrawBackgroundColor(Background[6], 255);
+    TextDrawFont(Background[6], 4);
+    TextDrawSetProportional(Background[6], 1);
     
     gServerTextdraws[3] = TextDrawCreate(243.000000, 432.000000, "Red Redemption Roleplay");
     TextDrawFont(gServerTextdraws[3], 1);
@@ -34659,12 +34699,13 @@ Dialog:ChangeHudMode(playerid, response, listitem, inputtext[]) {
                         ShowPlayerProgressBar(playerid, PlayerData[playerid][energy]);
                     }
                     case 2: {
-                        PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], ConvertHBEColor(floatround(PlayerData[playerid][pHunger])));
-                        PlayerTextDrawColor(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], ConvertHBEColor(floatround(PlayerData[playerid][pEnergy])));
-                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
-                        PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10], sprintf("%.0f%", PlayerData[playerid][pHunger]));
-                        PlayerTextDrawSetString(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11], sprintf("%.0f%", PlayerData[playerid][pEnergy]));
+                        new Float:makanWidth = (PlayerData[playerid][pHunger] / 100.0) * 54.0;
+                        new Float:minumWidth = (PlayerData[playerid][pEnergy] / 100.0) * 54.0;
+                        PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], makanWidth, 5.000);
+                        PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], minumWidth, 5.000);
+                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
+                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
+                        PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9]);
                     }
                     case 3: {
                         for (new i = 12; i < 20; i++) {
@@ -57341,13 +57382,18 @@ TogglePlayerGUI(playerid, bool:toggle)
                 //PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][6]);
             }
             case 2: {
+                for (new i = 0; i < 7; i++) {
+                    TextDrawShowForPlayer(playerid, Background[i]);
+                }
                 PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
                 PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
                 PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9]);
-                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
-                //TextDrawShowForPlayer(playerid, gServerTextdraws[3]);
-                //TextDrawShowForPlayer(playerid, gServerTextdraws[4]);
+                new Float:makanWidth = (PlayerData[playerid][pHunger] / 100.0) * 54.0;
+                new Float:minumWidth = (PlayerData[playerid][pEnergy] / 100.0) * 54.0;
+                PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7], makanWidth, 5.000);
+                PlayerTextDrawTextSize(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8], minumWidth, 5.000);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
+                PlayerTextDrawShow(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
             }
             case 3: {
                 for (new i = 12; i < 20; i++) {
@@ -57386,13 +57432,12 @@ TogglePlayerGUI(playerid, bool:toggle)
                 //PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][6]);
             }
             case 2: {
+                for (new i = 0; i < 7; i++) {
+                    TextDrawHideForPlayer(playerid, Background[i]);
+                }
                 PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][7]);
                 PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][8]);
                 PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][9]);
-                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][10]);
-                PlayerTextDrawHide(playerid, PlayerTextdraws[playerid][textdraw_playerGUI][11]);
-                //TextDrawHideForPlayer(playerid, gServerTextdraws[3]);
-                //TextDrawHideForPlayer(playerid, gServerTextdraws[4]);
             }
             case 3: {
                 for (new i = 12; i < 20; i++) {

@@ -806,7 +806,7 @@ enum playerTextraws {
     PlayerText:textdraw_speedometer[32],
     PlayerText:textdraw_taxi[4],
     PlayerText:textdraw_storage[3],
-    PlayerText:textdraw_playerGUI[20],
+    PlayerText:textdraw_playerGUI[30],
     PlayerText:textdraw_spectate[2],
     PlayerText:textdraw_trash[2],
     PlayerText:textdraw_registrasi[10],
